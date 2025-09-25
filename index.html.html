@@ -1,0 +1,314 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MetaCity - Virtual Real Estate Marketplace</title>
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        neon: {
+                            cyan: '#00FFFF',
+                            pink: '#FF006E',
+                            purple: '#8B5CF6',
+                            blue: '#0066FF',
+                            red: '#FF0040'
+                        }
+                    },
+                    fontFamily: {
+                        cyber: ['Orbitron', 'monospace'],
+                        future: ['Rajdhani', 'sans-serif']
+                    }
+                }
+            }
+        }
+    </script>
+    
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Rajdhani:wght@300;400;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Three.js -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/controls/OrbitControls.js"></script>
+    
+    <!-- GSAP -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+    
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body class="bg-black text-white font-future overflow-x-hidden">
+    <!-- Navigation -->
+    <nav class="fixed top-0 w-full z-50 glassmorphism">
+        <div class="container mx-auto px-6 py-4">
+            <div class="flex items-center justify-between">
+                <div class="text-2xl font-cyber font-bold text-neon-cyan animate-glow">MetaCity</div>
+                <div class="hidden md:flex space-x-8">
+                    <a href="#hero" class="hover:text-neon-cyan transition-colors duration-300">Home</a>
+                    <a href="#about" class="hover:text-neon-cyan transition-colors duration-300">About</a>
+                    <a href="#explore" class="hover:text-neon-cyan transition-colors duration-300">Explore</a>
+                    <a href="#properties" class="hover:text-neon-cyan transition-colors duration-300">Properties</a>
+                    <a href="#calculator" class="hover:text-neon-cyan transition-colors duration-300">Calculator</a>
+                    <a href="#contact" class="hover:text-neon-cyan transition-colors duration-300">Contact</a>
+                </div>
+                <button id="mobile-menu-btn" class="md:hidden text-neon-cyan">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+                    </svg>
+                </button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="hero" class="relative h-screen flex items-center justify-center overflow-hidden">
+        <canvas id="hero-canvas" class="absolute inset-0 w-full h-full"></canvas>
+        <div class="absolute inset-0 bg-gradient-to-b from-transparent via-black/20 to-black/60"></div>
+        
+        <div class="relative z-10 text-center px-6 max-w-6xl mx-auto">
+            <h1 class="text-6xl md:text-8xl font-cyber font-black mb-6 animate-glow">
+                Own The <span class="text-neon-cyan">Future</span>
+            </h1>
+            <p class="text-xl md:text-2xl mb-8 text-gray-300 font-light">Buy Virtual Land Today</p>
+            <p class="text-lg md:text-xl mb-12 text-gray-400">Premium digital properties inside the Metaverse</p>
+            
+            <div class="flex flex-col sm:flex-row gap-6 justify-center">
+                <button class="hero-btn bg-gradient-to-r from-neon-cyan to-neon-blue px-8 py-4 rounded-lg font-semibold text-black hover:scale-105 transition-all duration-300">
+                    Explore City
+                </button>
+                <button class="hero-btn bg-gradient-to-r from-neon-pink to-neon-red px-8 py-4 rounded-lg font-semibold hover:scale-105 transition-all duration-300">
+                    Buy Land Now
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="py-20 px-6 relative">
+        <div class="container mx-auto max-w-7xl">
+            <div class="grid md:grid-cols-2 gap-12 items-center">
+                <div class="relative">
+                    <canvas id="building-canvas" class="w-full h-96 rounded-xl"></canvas>
+                </div>
+                
+                <div class="space-y-8">
+                    <h2 class="text-4xl md:text-5xl font-cyber font-bold text-neon-cyan mb-6">Why Virtual Real Estate?</h2>
+                    <p class="text-lg leading-relaxed text-gray-300">
+                        Step into the future of property investment. MetaCity offers exclusive digital real estate opportunities in premium virtual environments.
+                    </p>
+                    
+                    <div class="grid grid-cols-3 gap-6 mt-12">
+                        <div class="text-center glassmorphism p-6 rounded-xl">
+                            <div class="text-3xl font-cyber font-bold text-neon-cyan counter" data-target="10000">0</div>
+                            <div class="text-sm text-gray-400 mt-2">Plots Sold</div>
+                        </div>
+                        <div class="text-center glassmorphism p-6 rounded-xl">
+                            <div class="text-3xl font-cyber font-bold text-neon-pink counter" data-target="200">0</div>
+                            <div class="text-sm text-gray-400 mt-2">Investors</div>
+                        </div>
+                        <div class="text-center glassmorphism p-6 rounded-xl">
+                            <div class="text-3xl font-cyber font-bold text-neon-purple">∞</div>
+                            <div class="text-sm text-gray-400 mt-2">Possibilities</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Explore MetaCity Section -->
+    <section id="explore" class="py-20 px-6 relative bg-gradient-to-b from-black to-gray-900">
+        <div class="container mx-auto max-w-7xl">
+            <div class="text-center mb-16">
+                <h2 class="text-4xl md:text-5xl font-cyber font-bold text-neon-cyan mb-6">Explore MetaCity</h2>
+                <p class="text-xl text-gray-300">Interactive 3D city map - Hover on buildings to see details</p>
+            </div>
+            
+            <div class="relative">
+                <img src="https://images.unsplash.com/photo-1535391879778-3bae11d29a24?q=80&w=1740&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="MetaCity" class="w-full h-[600px] rounded-xl border border-neon-cyan/30 object-cover">
+                <div id="property-tooltip" class="absolute hidden glassmorphism p-4 rounded-lg pointer-events-none z-10">
+                    <div class="font-semibold text-neon-cyan" id="tooltip-name"></div>
+                    <div class="text-sm text-gray-300" id="tooltip-price"></div>
+                    <div class="text-xs text-neon-pink mt-2">Click to Buy</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Featured Properties Section -->
+    <section id="properties" class="py-20 px-6">
+        <div class="container mx-auto max-w-7xl">
+            <div class="text-center mb-16">
+                <h2 class="text-4xl md:text-5xl font-cyber font-bold text-neon-cyan mb-6">Featured Properties</h2>
+            </div>
+            
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <div class="property-card glassmorphism rounded-xl overflow-hidden group hover:scale-105 transition-all duration-300">
+                    <div class="relative h-64">
+                        <canvas class="property-preview w-full h-full" data-property="tower"></canvas>
+                        <div class="absolute bottom-4 left-4 right-4">
+                            <h3 class="text-xl font-cyber font-bold text-neon-cyan mb-2">Cyber Tower Alpha</h3>
+                            <p class="text-lg font-semibold">2.5 ETH</p>
+                        </div>
+                    </div>
+                    <div class="p-6">
+                        <p class="text-gray-300 mb-4">Premium skyscraper in downtown MetaCity.</p>
+                        <button class="w-full bg-gradient-to-r from-neon-cyan to-neon-blue text-black py-3 rounded-lg font-semibold hover:scale-105 transition-all duration-300">
+                            View in 3D
+                        </button>
+                    </div>
+                </div>
+                
+                <div class="property-card glassmorphism rounded-xl overflow-hidden group hover:scale-105 transition-all duration-300">
+                    <div class="relative h-64">
+                        <canvas class="property-preview w-full h-full" data-property="apartment"></canvas>
+                        <div class="absolute bottom-4 left-4 right-4">
+                            <h3 class="text-xl font-cyber font-bold text-neon-pink mb-2">Neo Apartment</h3>
+                            <p class="text-lg font-semibold">1.8 ETH</p>
+                        </div>
+                    </div>
+                    <div class="p-6">
+                        <p class="text-gray-300 mb-4">Modern luxury apartment with city views.</p>
+                        <button class="w-full bg-gradient-to-r from-neon-pink to-neon-red text-white py-3 rounded-lg font-semibold hover:scale-105 transition-all duration-300">
+                            View in 3D
+                        </button>
+                    </div>
+                </div>
+                
+                <div class="property-card glassmorphism rounded-xl overflow-hidden group hover:scale-105 transition-all duration-300">
+                    <div class="relative h-64">
+                        <canvas class="property-preview w-full h-full" data-property="villa"></canvas>
+                        <div class="absolute bottom-4 left-4 right-4">
+                            <h3 class="text-xl font-cyber font-bold text-neon-purple mb-2">Quantum Villa</h3>
+                            <p class="text-lg font-semibold">4.2 ETH</p>
+                        </div>
+                    </div>
+                    <div class="p-6">
+                        <p class="text-gray-300 mb-4">Ultra-exclusive villa in elite district.</p>
+                        <button class="w-full bg-gradient-to-r from-neon-purple to-purple-600 text-white py-3 rounded-lg font-semibold hover:scale-105 transition-all duration-300">
+                            View in 3D
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Video Section -->
+    <section id="video" class="py-20 px-6 bg-gradient-to-b from-gray-900 to-black">
+        <div class="container mx-auto max-w-7xl">
+            <div class="text-center mb-16">
+                <h2 class="text-4xl md:text-5xl font-cyber font-bold text-neon-cyan mb-6">Life Inside MetaCity</h2>
+            </div>
+            
+            <div class="relative h-96 rounded-xl overflow-hidden border border-neon-cyan/30">
+                <iframe 
+                    src="https://www.youtube.com/embed/2J5GzHoKJss?autoplay=1&mute=1&loop=1&playlist=2J5GzHoKJss&controls=0&showinfo=0&modestbranding=1" 
+                    title="Cyber City Metaverse" 
+                    frameborder="0" 
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+                    allowfullscreen
+                    class="absolute inset-0 w-full h-full rounded-xl">
+                </iframe>
+                <div class="absolute inset-0 bg-gradient-to-r from-neon-cyan/20 to-neon-purple/20 pointer-events-none"></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Calculator Section -->
+    <section id="calculator" class="py-20 px-6">
+        <div class="container mx-auto max-w-4xl">
+            <div class="text-center mb-16">
+                <h2 class="text-4xl md:text-5xl font-cyber font-bold text-neon-cyan mb-6">Investment Calculator</h2>
+            </div>
+            
+            <div class="glassmorphism p-8 rounded-xl">
+                <div class="grid md:grid-cols-2 gap-8">
+                    <div class="space-y-6">
+                        <div>
+                            <label class="block text-sm font-semibold mb-2 text-neon-cyan">Property Type</label>
+                            <select id="property-type" class="w-full bg-black/50 border border-neon-cyan/30 rounded-lg p-3 text-white">
+                                <option value="1.5">Apartment (1.5 ETH)</option>
+                                <option value="2.5">Tower (2.5 ETH)</option>
+                                <option value="4.0">Villa (4.0 ETH)</option>
+                            </select>
+                        </div>
+                        
+                        <div>
+                            <label class="block text-sm font-semibold mb-2 text-neon-cyan">Investment Period</label>
+                            <input type="range" id="investment-period" min="1" max="60" value="12" class="w-full">
+                            <div class="text-center text-sm text-gray-400 mt-1">
+                                <span id="period-display">12 months</span>
+                            </div>
+                        </div>
+                        
+                        <button id="calculate-btn" class="w-full bg-gradient-to-r from-neon-purple to-purple-600 py-3 rounded-lg font-semibold">
+                            Calculate ROI
+                        </button>
+                    </div>
+                    
+                    <div class="bg-black/30 p-6 rounded-xl">
+                        <h3 class="text-lg font-semibold text-neon-cyan mb-4">Investment Summary</h3>
+                        <div class="space-y-3">
+                            <div class="flex justify-between">
+                                <span class="text-gray-300">Initial Investment:</span>
+                                <span id="initial-investment" class="font-semibold text-white">2.5 ETH</span>
+                            </div>
+                            <div class="flex justify-between">
+                                <span class="text-gray-300">Estimated Value:</span>
+                                <span id="estimated-value" class="font-bold text-neon-cyan">2.87 ETH</span>
+                            </div>
+                            <div class="flex justify-between">
+                                <span class="text-gray-300">Total ROI:</span>
+                                <span id="total-roi" class="font-bold text-neon-pink">+0.37 ETH</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Newsletter Section -->
+    <section id="contact" class="py-20 px-6 bg-gradient-to-b from-black to-gray-900">
+        <div class="container mx-auto max-w-4xl">
+            <div class="text-center mb-16">
+                <h2 class="text-4xl md:text-5xl font-cyber font-bold text-neon-cyan mb-6">Join MetaCity</h2>
+            </div>
+            
+            <div class="glassmorphism p-8 rounded-xl">
+                <form id="newsletter-form" class="space-y-6">
+                    <div class="grid md:grid-cols-2 gap-6">
+                        <input type="text" placeholder="Full Name" class="w-full bg-black/50 border border-neon-cyan/30 rounded-lg p-3 text-white focus:border-neon-cyan focus:outline-none">
+                        <input type="email" placeholder="Email Address" class="w-full bg-black/50 border border-neon-cyan/30 rounded-lg p-3 text-white focus:border-neon-cyan focus:outline-none">
+                    </div>
+                    
+                    <button type="submit" class="w-full bg-gradient-to-r from-neon-cyan to-neon-blue text-black py-4 rounded-lg font-semibold text-lg hover:scale-105 transition-all duration-300">
+                        Become a Citizen
+                    </button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="py-12 px-6 bg-black border-t border-neon-cyan/30">
+        <div class="container mx-auto max-w-7xl text-center">
+            <div class="text-2xl font-cyber font-bold text-neon-cyan mb-4">MetaCity</div>
+            <p class="text-gray-400 mb-4">© 2025 MetaCity – Virtual Real Estate Marketplace</p>
+            <div class="flex justify-center space-x-6">
+                <a href="#" class="text-gray-400 hover:text-neon-cyan transition-colors">Discord</a>
+                <a href="#" class="text-gray-400 hover:text-neon-cyan transition-colors">Twitter</a>
+                <a href="#" class="text-gray-400 hover:text-neon-cyan transition-colors">LinkedIn</a>
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
