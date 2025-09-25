@@ -1,0 +1,177 @@
+/* NeuroAI Additional Responsive Styles and Optimizations */
+
+/* Enhanced Mobile Responsiveness */
+@media (max-width: 640px) {
+    .hero-title {
+        font-size: 3rem !important;
+        line-height: 1.1;
+    }
+    
+    .hero-subtitle {
+        font-size: 1.125rem !important;
+    }
+    
+    .floating-animation {
+        width: 80px !important;
+        height: 80px !important;
+    }
+    
+    .feature-card {
+        padding: 1rem !important;
+    }
+    
+    .pricing-card {
+        padding: 1.5rem !important;
+    }
+    
+    .step-card .w-16 {
+        width: 3rem !important;
+        height: 3rem !important;
+    }
+    
+    .step-card .text-2xl {
+        font-size: 1.25rem !important;
+    }
+}
+
+@media (max-width: 768px) {
+    .hero-title {
+        font-size: 4rem !important;
+    }
+    
+    .about-text h2 {
+        font-size: 2.5rem !important;
+    }
+    
+    .section-title {
+        font-size: 2.5rem !important;
+    }
+}
+
+/* Enhanced 3D Effects for Desktop */
+@media (min-width: 1024px) {
+    .card-3d {
+        perspective: 1000px;
+    }
+    
+    .card-3d:hover {
+        transform: rotateY(8deg) rotateX(8deg) translateZ(30px);
+        box-shadow: 0 20px 60px rgba(0, 212, 255, 0.3);
+    }
+}
+
+/* Performance Optimizations */
+* {
+    backface-visibility: hidden;
+    -webkit-transform-style: preserve-3d;
+    transform-style: preserve-3d;
+}
+
+img {
+    will-change: transform;
+    transform: translateZ(0);
+}
+
+.parallax-bg {
+    will-change: transform;
+    transform: translateZ(0);
+}
+
+/* Accessibility Improvements */
+@media (prefers-reduced-motion: reduce) {
+    * {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+        scroll-behavior: auto !important;
+    }
+    
+    .floating-animation {
+        animation: none !important;
+    }
+}
+
+/* Print Styles */
+@media print {
+    .parallax-bg {
+        background-attachment: scroll !important;
+    }
+    
+    .neon-glow {
+        text-shadow: none !important;
+    }
+    
+    .neon-border {
+        box-shadow: none !important;
+        border: 1px solid #333 !important;
+    }
+}
+
+/* High DPI Display Optimizations */
+@media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
+    .neon-glow {
+        text-shadow: 0 0 5px #00d4ff, 0 0 10px #00d4ff, 0 0 15px #00d4ff;
+    }
+}
+
+/* Dark mode support (already implemented but enhanced) */
+@media (prefers-color-scheme: dark) {
+    body {
+        background: #0a0a0a;
+        color: #ffffff;
+    }
+}
+
+/* Landscape mobile optimizations */
+@media (max-height: 500px) and (orientation: landscape) {
+    .min-h-screen {
+        min-height: 100vh;
+        padding: 2rem 0;
+    }
+    
+    .hero-title {
+        font-size: 3rem !important;
+    }
+    
+    .floating-animation {
+        width: 60px !important;
+        height: 60px !important;
+    }
+}
+
+/* Loading performance improvements */
+.lazy-load {
+    opacity: 0;
+    transition: opacity 0.3s;
+}
+
+.lazy-load.loaded {
+    opacity: 1;
+}
+
+/* Focus management for keyboard navigation */
+button:focus-visible,
+input:focus-visible,
+textarea:focus-visible,
+a:focus-visible {
+    outline: 2px solid #00d4ff;
+    outline-offset: 2px;
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+    width: 8px;
+}
+
+::-webkit-scrollbar-track {
+    background: #1a1a1a;
+}
+
+::-webkit-scrollbar-thumb {
+    background: linear-gradient(180deg, #00d4ff, #7b2cbf);
+    border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: linear-gradient(180deg, #00a8cc, #5a1e7a);
+}

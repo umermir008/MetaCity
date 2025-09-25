@@ -1,0 +1,453 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NeuroAI - Smart AI Automation Platform</title>
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- GSAP for animations -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+    
+    <!-- Font Awesome for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- Responsive CSS -->
+    <link rel="stylesheet" href="responsive.css">
+    
+    <!-- Custom styles -->
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap');
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Inter', sans-serif;
+            background: #0a0a0a;
+            color: #ffffff;
+            overflow-x: hidden;
+        }
+        
+        .neon-glow {
+            text-shadow: 0 0 10px #00d4ff, 0 0 20px #00d4ff, 0 0 30px #00d4ff;
+        }
+        
+        .neon-border {
+            box-shadow: 0 0 20px rgba(0, 212, 255, 0.5);
+            border: 1px solid rgba(0, 212, 255, 0.3);
+        }
+        
+        .gradient-bg {
+            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%);
+        }
+        
+        .floating-animation {
+            animation: float 6s ease-in-out infinite;
+        }
+        
+        @keyframes float {
+            0%, 100% { transform: translateY(0px) rotateX(0deg) rotateY(0deg); }
+            50% { transform: translateY(-20px) rotateX(10deg) rotateY(5deg); }
+        }
+        
+        .ripple-effect {
+            position: relative;
+            overflow: hidden;
+            transition: all 0.3s ease;
+        }
+        
+        .ripple-effect:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 30px rgba(0, 212, 255, 0.3);
+        }
+        
+        .card-3d {
+            transform-style: preserve-3d;
+            transition: transform 0.3s ease;
+        }
+        
+        .card-3d:hover {
+            transform: rotateY(5deg) rotateX(5deg) translateZ(20px);
+        }
+        
+        .progress-line {
+            position: relative;
+            background: linear-gradient(90deg, #00d4ff 0%, #7b2cbf 100%);
+            height: 3px;
+            border-radius: 2px;
+        }
+        
+        .glow-on-focus:focus {
+            outline: none;
+            box-shadow: 0 0 0 3px rgba(0, 212, 255, 0.5);
+        }
+        
+        .parallax-bg {
+            background-attachment: fixed;
+            background-position: center;
+            background-repeat: no-repeat;
+            background-size: cover;
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="fixed top-0 w-full z-50 bg-black bg-opacity-80 backdrop-blur-sm">
+        <div class="container mx-auto px-6 py-4 flex justify-between items-center">
+            <div class="text-2xl font-bold neon-glow">NeuroAI</div>
+            <div class="hidden md:flex space-x-8">
+                <a href="#home" class="hover:text-blue-400 transition-colors">Home</a>
+                <a href="#about" class="hover:text-blue-400 transition-colors">About</a>
+                <a href="#features" class="hover:text-blue-400 transition-colors">Features</a>
+                <a href="#pricing" class="hover:text-blue-400 transition-colors">Pricing</a>
+                <a href="#contact" class="hover:text-blue-400 transition-colors">Contact</a>
+            </div>
+            <button class="md:hidden text-white">
+                <i class="fas fa-bars"></i>
+            </button>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="home" class="min-h-screen flex items-center justify-center relative parallax-bg" 
+             style="background-image: url('https://images.unsplash.com/photo-1620712943543-bcc4688e7485?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80');">
+        <div class="absolute inset-0 bg-black bg-opacity-70"></div>
+        <div class="container mx-auto px-6 text-center relative z-10">
+            <div class="floating-animation mb-8">
+                <div class="w-32 h-32 mx-auto bg-gradient-to-r from-blue-500 to-purple-600 rounded-full flex items-center justify-center">
+                    <i class="fas fa-brain text-4xl text-white"></i>
+                </div>
+            </div>
+            <h1 class="text-5xl md:text-7xl font-bold mb-6 neon-glow hero-title">AI That Works for You</h1>
+            <p class="text-xl md:text-2xl mb-8 text-gray-300 hero-subtitle">Automate. Scale. Innovate with NeuroAI.</p>
+            <div class="space-x-4">
+                <button class="bg-blue-600 hover:bg-blue-700 px-8 py-4 rounded-lg font-semibold ripple-effect neon-border">
+                    Start Free Trial
+                </button>
+                <button class="border border-gray-600 hover:border-blue-400 px-8 py-4 rounded-lg font-semibold ripple-effect">
+                    Learn More
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="py-20 gradient-bg">
+        <div class="container mx-auto px-6">
+            <div class="grid md:grid-cols-2 gap-12 items-center">
+                <div class="about-image">
+                    <img src="https://images.unsplash.com/photo-1677442136019-21780ecad995?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" 
+                         alt="AI Abstract" class="rounded-lg card-3d">
+                </div>
+                <div class="about-text">
+                    <h2 class="text-4xl font-bold mb-6 neon-glow">Revolutionizing Business Intelligence</h2>
+                    <p class="text-lg text-gray-300 mb-6">
+                        NeuroAI helps businesses automate tasks with intelligent workflows and predictive analytics. 
+                        Our cutting-edge AI platform transforms how companies operate, making complex processes 
+                        simple and efficient.
+                    </p>
+                    <ul class="space-y-3">
+                        <li class="flex items-center">
+                            <i class="fas fa-check-circle text-blue-400 mr-3"></i>
+                            <span>Advanced Machine Learning Algorithms</span>
+                        </li>
+                        <li class="flex items-center">
+                            <i class="fas fa-check-circle text-blue-400 mr-3"></i>
+                            <span>Real-time Data Processing</span>
+                        </li>
+                        <li class="flex items-center">
+                            <i class="fas fa-check-circle text-blue-400 mr-3"></i>
+                            <span>Seamless API Integration</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section id="features" class="py-20 parallax-bg" 
+             style="background-image: url('https://images.unsplash.com/photo-1518709268805-4e9042af2176?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80');">
+        <div class="absolute inset-0 bg-black bg-opacity-80"></div>
+        <div class="container mx-auto px-6 relative z-10">
+            <h2 class="text-4xl font-bold text-center mb-16 neon-glow">Powerful Features</h2>
+            <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+                <div class="feature-card bg-gray-900 bg-opacity-80 p-6 rounded-lg card-3d neon-border">
+                    <div class="text-4xl text-blue-400 mb-4">
+                        <i class="fas fa-robot"></i>
+                    </div>
+                    <h3 class="text-xl font-semibold mb-3">AI Workflows</h3>
+                    <p class="text-gray-300">Automate complex business processes with intelligent workflow automation.</p>
+                </div>
+                <div class="feature-card bg-gray-900 bg-opacity-80 p-6 rounded-lg card-3d neon-border">
+                    <div class="text-4xl text-purple-400 mb-4">
+                        <i class="fas fa-chart-line"></i>
+                    </div>
+                    <h3 class="text-xl font-semibold mb-3">Predictive Analytics</h3>
+                    <p class="text-gray-300">Make data-driven decisions with advanced predictive modeling.</p>
+                </div>
+                <div class="feature-card bg-gray-900 bg-opacity-80 p-6 rounded-lg card-3d neon-border">
+                    <div class="text-4xl text-green-400 mb-4">
+                        <i class="fas fa-comments"></i>
+                    </div>
+                    <h3 class="text-xl font-semibold mb-3">24/7 Smart Chatbots</h3>
+                    <p class="text-gray-300">Provide instant customer support with AI-powered chatbots.</p>
+                </div>
+                <div class="feature-card bg-gray-900 bg-opacity-80 p-6 rounded-lg card-3d neon-border">
+                    <div class="text-4xl text-yellow-400 mb-4">
+                        <i class="fas fa-puzzle-piece"></i>
+                    </div>
+                    <h3 class="text-xl font-semibold mb-3">Seamless Integrations</h3>
+                    <p class="text-gray-300">Connect with over 1000+ popular business tools and platforms.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- How It Works Section -->
+    <section id="how-it-works" class="py-20 gradient-bg">
+        <div class="container mx-auto px-6">
+            <h2 class="text-4xl font-bold text-center mb-16 neon-glow">How It Works</h2>
+            <div class="max-w-4xl mx-auto">
+                <div class="grid md:grid-cols-3 gap-8 mb-12">
+                    <div class="text-center step-card">
+                        <div class="w-16 h-16 bg-blue-600 rounded-full flex items-center justify-center mx-auto mb-4 neon-border">
+                            <span class="text-2xl font-bold">1</span>
+                        </div>
+                        <h3 class="text-xl font-semibold mb-3">Connect</h3>
+                        <p class="text-gray-300">Link your existing tools and data sources to NeuroAI platform.</p>
+                    </div>
+                    <div class="text-center step-card">
+                        <div class="w-16 h-16 bg-purple-600 rounded-full flex items-center justify-center mx-auto mb-4 neon-border">
+                            <span class="text-2xl font-bold">2</span>
+                        </div>
+                        <h3 class="text-xl font-semibold mb-3">Automate</h3>
+                        <p class="text-gray-300">Set up intelligent workflows and let AI handle repetitive tasks.</p>
+                    </div>
+                    <div class="text-center step-card">
+                        <div class="w-16 h-16 bg-green-600 rounded-full flex items-center justify-center mx-auto mb-4 neon-border">
+                            <span class="text-2xl font-bold">3</span>
+                        </div>
+                        <h3 class="text-xl font-semibold mb-3">Scale</h3>
+                        <p class="text-gray-300">Watch your business grow with AI-powered insights and automation.</p>
+                    </div>
+                </div>
+                <div class="progress-line w-full mx-auto progress-bar"></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Video Showcase Section -->
+    <section id="video" class="py-20 bg-black">
+        <div class="container mx-auto px-6 text-center">
+            <h2 class="text-4xl font-bold mb-8 neon-glow">See NeuroAI in Action</h2>
+            <p class="text-xl text-gray-300 mb-12">Watch how NeuroAI transforms business operations</p>
+            <div class="max-w-4xl mx-auto video-container">
+                <div class="aspect-video bg-gray-900 rounded-lg overflow-hidden relative neon-border">
+                    <iframe width="100%" height="100%" 
+                            src="https://www.youtube.com/embed/aircAruvnKk" 
+                            title="Neural Networks Explained"
+                            frameborder="0" 
+                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+                            allowfullscreen>
+                    </iframe>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Pricing Plans Section -->
+    <section id="pricing" class="py-20 parallax-bg" 
+             style="background-image: url('https://images.unsplash.com/photo-1551288049-bebda4e38f71?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80');">
+        <div class="absolute inset-0 bg-black bg-opacity-80"></div>
+        <div class="container mx-auto px-6 relative z-10">
+            <h2 class="text-4xl font-bold text-center mb-16 neon-glow">Choose Your Plan</h2>
+            <div class="grid md:grid-cols-3 gap-8 max-w-6xl mx-auto">
+                <div class="pricing-card bg-gray-900 bg-opacity-90 p-8 rounded-lg text-center card-3d neon-border">
+                    <h3 class="text-2xl font-bold mb-4">Starter</h3>
+                    <div class="text-4xl font-bold mb-6 text-blue-400">$19<span class="text-lg text-gray-400">/mo</span></div>
+                    <ul class="space-y-3 mb-8">
+                        <li><i class="fas fa-check text-green-400 mr-2"></i>5 AI Workflows</li>
+                        <li><i class="fas fa-check text-green-400 mr-2"></i>Basic Analytics</li>
+                        <li><i class="fas fa-check text-green-400 mr-2"></i>Email Support</li>
+                        <li><i class="fas fa-check text-green-400 mr-2"></i>API Access</li>
+                    </ul>
+                    <button class="w-full bg-blue-600 hover:bg-blue-700 py-3 rounded-lg font-semibold ripple-effect">
+                        Get Started
+                    </button>
+                </div>
+                <div class="pricing-card bg-gray-900 bg-opacity-90 p-8 rounded-lg text-center card-3d neon-border border-blue-500">
+                    <div class="bg-blue-600 text-white px-4 py-1 rounded-full text-sm mb-4 inline-block">Most Popular</div>
+                    <h3 class="text-2xl font-bold mb-4">Professional</h3>
+                    <div class="text-4xl font-bold mb-6 text-purple-400">$49<span class="text-lg text-gray-400">/mo</span></div>
+                    <ul class="space-y-3 mb-8">
+                        <li><i class="fas fa-check text-green-400 mr-2"></i>25 AI Workflows</li>
+                        <li><i class="fas fa-check text-green-400 mr-2"></i>Advanced Analytics</li>
+                        <li><i class="fas fa-check text-green-400 mr-2"></i>Priority Support</li>
+                        <li><i class="fas fa-check text-green-400 mr-2"></i>Custom Integrations</li>
+                        <li><i class="fas fa-check text-green-400 mr-2"></i>Team Collaboration</li>
+                    </ul>
+                    <button class="w-full bg-purple-600 hover:bg-purple-700 py-3 rounded-lg font-semibold ripple-effect">
+                        Get Started
+                    </button>
+                </div>
+                <div class="pricing-card bg-gray-900 bg-opacity-90 p-8 rounded-lg text-center card-3d neon-border">
+                    <h3 class="text-2xl font-bold mb-4">Enterprise</h3>
+                    <div class="text-4xl font-bold mb-6 text-green-400">$99<span class="text-lg text-gray-400">/mo</span></div>
+                    <ul class="space-y-3 mb-8">
+                        <li><i class="fas fa-check text-green-400 mr-2"></i>Unlimited Workflows</li>
+                        <li><i class="fas fa-check text-green-400 mr-2"></i>Enterprise Analytics</li>
+                        <li><i class="fas fa-check text-green-400 mr-2"></i>24/7 Phone Support</li>
+                        <li><i class="fas fa-check text-green-400 mr-2"></i>White-label Solution</li>
+                        <li><i class="fas fa-check text-green-400 mr-2"></i>Dedicated Account Manager</li>
+                    </ul>
+                    <button class="w-full bg-green-600 hover:bg-green-700 py-3 rounded-lg font-semibold ripple-effect">
+                        Contact Sales
+                    </button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials Section -->
+    <section id="testimonials" class="py-20 gradient-bg">
+        <div class="container mx-auto px-6">
+            <h2 class="text-4xl font-bold text-center mb-16 neon-glow">What Our Clients Say</h2>
+            <div class="max-w-4xl mx-auto">
+                <div class="testimonial-carousel">
+                    <div class="testimonial-slide bg-gray-900 bg-opacity-80 p-8 rounded-lg neon-border">
+                        <div class="flex items-center mb-6">
+                            <img src="https://images.unsplash.com/photo-1560250097-0b93528c311a?ixlib=rb-4.0.3&auto=format&fit=crop&w=150&q=80" 
+                                 alt="Client" class="w-16 h-16 rounded-full mr-4">
+                            <div>
+                                <h4 class="font-semibold">John Smith</h4>
+                                <p class="text-gray-400">CEO, TechCorp</p>
+                            </div>
+                        </div>
+                        <p class="text-lg italic">"NeuroAI has revolutionized our business operations. We've seen a 300% increase in efficiency since implementing their AI workflows."</p>
+                        <div class="flex text-yellow-400 mt-4">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact & Free Trial Section -->
+    <section id="contact" class="py-20 parallax-bg" 
+             style="background-image: url('https://images.unsplash.com/photo-1497366216548-37526070297c?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80');">
+        <div class="absolute inset-0 bg-black bg-opacity-80"></div>
+        <div class="container mx-auto px-6 relative z-10">
+            <div class="max-w-4xl mx-auto">
+                <h2 class="text-4xl font-bold text-center mb-8 neon-glow">Start Your AI Journey Today</h2>
+                <p class="text-xl text-center text-gray-300 mb-12">Ready to transform your business with AI? Get started with a free trial.</p>
+                
+                <div class="grid md:grid-cols-2 gap-12">
+                    <div>
+                        <h3 class="text-2xl font-semibold mb-6">Get in Touch</h3>
+                        <form class="space-y-6 contact-form">
+                            <div>
+                                <input type="text" placeholder="Your Name" required
+                                       class="w-full px-4 py-3 bg-gray-900 border border-gray-700 rounded-lg glow-on-focus text-white">
+                            </div>
+                            <div>
+                                <input type="email" placeholder="Your Email" required
+                                       class="w-full px-4 py-3 bg-gray-900 border border-gray-700 rounded-lg glow-on-focus text-white">
+                            </div>
+                            <div>
+                                <input type="text" placeholder="Company Name"
+                                       class="w-full px-4 py-3 bg-gray-900 border border-gray-700 rounded-lg glow-on-focus text-white">
+                            </div>
+                            <div>
+                                <textarea placeholder="Your Message" rows="4"
+                                          class="w-full px-4 py-3 bg-gray-900 border border-gray-700 rounded-lg glow-on-focus text-white"></textarea>
+                            </div>
+                            <button type="submit" class="w-full bg-blue-600 hover:bg-blue-700 py-3 rounded-lg font-semibold ripple-effect neon-border">
+                                Send Message
+                            </button>
+                        </form>
+                    </div>
+                    
+                    <div class="flex items-center justify-center">
+                        <div class="text-center">
+                            <div class="text-6xl text-blue-400 mb-6 floating-animation">
+                                <i class="fas fa-rocket"></i>
+                            </div>
+                            <h3 class="text-2xl font-semibold mb-4">Ready to Launch?</h3>
+                            <p class="text-gray-300 mb-8">Join thousands of businesses already using NeuroAI</p>
+                            <button class="bg-gradient-to-r from-blue-600 to-purple-600 px-8 py-4 rounded-lg font-semibold text-lg ripple-effect neon-border">
+                                Start Free Trial Today
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-black py-12">
+        <div class="container mx-auto px-6">
+            <div class="grid md:grid-cols-4 gap-8 mb-8">
+                <div>
+                    <div class="text-2xl font-bold neon-glow mb-4">NeuroAI</div>
+                    <p class="text-gray-400">Intelligence Simplified</p>
+                </div>
+                <div>
+                    <h4 class="font-semibold mb-4">Quick Links</h4>
+                    <ul class="space-y-2">
+                        <li><a href="#home" class="text-gray-400 hover:text-blue-400 transition-colors">Home</a></li>
+                        <li><a href="#features" class="text-gray-400 hover:text-blue-400 transition-colors">Features</a></li>
+                        <li><a href="#pricing" class="text-gray-400 hover:text-blue-400 transition-colors">Pricing</a></li>
+                        <li><a href="#contact" class="text-gray-400 hover:text-blue-400 transition-colors">Contact</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="font-semibold mb-4">Resources</h4>
+                    <ul class="space-y-2">
+                        <li><a href="#" class="text-gray-400 hover:text-blue-400 transition-colors">Documentation</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-blue-400 transition-colors">API Reference</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-blue-400 transition-colors">Support</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-blue-400 transition-colors">Blog</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="font-semibold mb-4">Follow Us</h4>
+                    <div class="flex space-x-4">
+                        <a href="#" class="text-2xl text-gray-400 hover:text-blue-400 transition-colors social-icon">
+                            <i class="fab fa-linkedin"></i>
+                        </a>
+                        <a href="#" class="text-2xl text-gray-400 hover:text-blue-400 transition-colors social-icon">
+                            <i class="fab fa-github"></i>
+                        </a>
+                        <a href="#" class="text-2xl text-gray-400 hover:text-blue-400 transition-colors social-icon">
+                            <i class="fab fa-twitter"></i>
+                        </a>
+                        <a href="#" class="text-2xl text-gray-400 hover:text-blue-400 transition-colors social-icon">
+                            <i class="fab fa-youtube"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <div class="border-t border-gray-800 pt-8 text-center text-gray-400">
+                <p>&copy; 2025 NeuroAI – Intelligence Simplified. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- JavaScript -->
+    <script src="script.js"></script>
+</body>
+</html>
